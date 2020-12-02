@@ -9,3 +9,12 @@ To run the tests: cm.exe T01.exe > T1.txt
 This will run the test and write the output to T1.txt file
 
 To run the aunit.exe : aunit T1.txt
+
+
+To test BLS and HAL on the microconroller:
+- connect your Arduino to your machine 
+- use Putty with connection type: serial, serial line: COM5, speed: 57600. In Category, click on Terminal and check the "Implicit CR in every LF".
+- run each .bat file in your command line. Example : testVMOperandStack.bat
+These .bat files load the program on the microcotnroller. 
+You can compare the output in Putty with the expected output to see if characters are transmited in the right way.
+

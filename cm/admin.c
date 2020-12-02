@@ -40,26 +40,27 @@ static void DisplayBanner() {
     VMOut_PutS(VMName); VMOut_PutS(AppSuffix); VMOut_PutS(Version); VMOut_PutS(Target); VMOut_PutN();
     VMOut_PutS(Copyright); VMOut_PutN();
 }
+
 static void Usage() {
     VMOut_PutS("\nUsage: "); VMOut_PutS(AppName); VMOut_PutS(" Options? <file.exe>\n");
     VMOut_PutS("\n         -v          Display the version and exit.");
     VMOut_PutS("\n         -? -help    Display options and exit.\n");
 }
 
-#define MemMax        4096
-#define MemAllocated  (4096+1024)
-/*public*/  u8*    mem;
-/*public*/  u8     memAllocated[MemAllocated];
+#define MemMax        3000  //3000 for adruino
+#define MemAllocated  (3000+1024)
+/*public*/  u8*    mem[] = { 0x91, 0xFF, 0x82, 0x00 };
+/*public*/  u8     memAllocated[MemAllocated]; //replace this with hardcoded program to see if it works on arduino before implementing the serdial loader
 
 // To get the base RAM address on a memory segment increment.
 static u8* GetBaseAddr(u8* memAddr, u32 memInc) {
     u32 a = (u32)memAddr + memInc;
     u32 m = memInc - 1U;
-//t    VMOut_PutS("Admin: a = "); VMOut_PutX((u32)a); VMOut_PutN();
-//t    VMOut_PutS("Admin: m = "); VMOut_PutX((u32)m); VMOut_PutN();
+    VMOut_PutS("Admin: a = "); VMOut_PutX((u32)a); VMOut_PutN();
+    VMOut_PutS("Admin: m = "); VMOut_PutX((u32)m); VMOut_PutN();
 
     u32 r = a & ~m;
-//t    VMOut_PutS("Admin: r = "); VMOut_PutX((u32)r); VMOut_PutN();
+    VMOut_PutS("Admin: r = "); VMOut_PutX((u32)r); VMOut_PutN();
     return (u8*)r;
 }
 
@@ -70,11 +71,11 @@ static bool loadObjFile(FILE* f, u16 maxSize) {
     u16 n, size;
     u8  buf[2];
 
-    buf[0] = (u8)fgetc(f);             // Read size.msb
-    buf[1] = (u8)fgetc(f);             // Read size.msb
+    buf[0] = (u8)fgetc(f);             // Read size.msb most sgnificant bit
+    buf[1] = (u8)fgetc(f);             // Read size.lsb least significant bit
     size = (u16)((buf[0] << 8) | buf[1]);
 
-//t VMOut_PutS("loadObjFile of size = %u\n", (u32)size);
+ VMOut_PutS("loadObjFile of size = "); VMOut_PutX((u32)size); VMOut_PutN();
 
     if (size <= maxSize) {
         for (n = 0; n < size; n++) {
@@ -120,9 +121,8 @@ int main(int argc, char* argv[]) {
     const char* name;
     const char* ext;
     int   i = 1;
-
-//t VMOut_PutS("argv[0] = [%s]\n", argv[0]);
-//t VMOut_PutS("argv[1] = [%s]\n", argv[1]);
+     //VMOut_PutS("argv[0] ="); VMOut_PutS(argv[0]);
+    VMOut_PutS("argv[1] = ["+argv[1]+"]\n");
 
     // Do Hal_Init() before any option messages.
     Hal_Init();
@@ -131,7 +131,7 @@ int main(int argc, char* argv[]) {
 //t    VMOut_PutS("GetBaseAddr(): sizeof u8* = "); VMOut_PutI((i32)sizeof(u8*)); VMOut_PutN();
 //t    VMOut_PutS("GetBaseAddr(): sizeof u32 = "); VMOut_PutI((i32)sizeof(u32)); VMOut_PutN();
 
-    mem = GetBaseAddr(memAllocated, (u32)1024UL);
+    mem[0] = GetBaseAddr(memAllocated, (u32)1024UL);
 //t    VMOut_PutS("Admin: memAllocated = "); VMOut_PutX((u32)memAllocated); VMOut_PutN();
 //t    VMOut_PutS("Admin: mem          = "); VMOut_PutX((u32)mem); VMOut_PutN();
 

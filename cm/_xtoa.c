@@ -40,7 +40,7 @@ void _utoa(u32 n, char* buf, i8 next, u8 base) {
 }
 
 /* Converts 32-bit signed integer to a buffer. Base is 10 by default. */
-void System_itoa(i32 i, char* buf) {
+void _itoa(i32 i, char* buf) {
     int  next = 0;
     if (i < 0L) {
         buf[next++] = '-';

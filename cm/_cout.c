@@ -20,7 +20,9 @@ static void COut_PutU(u32  u)        { printf("%lu", u); }
 static void COut_PutX(u32  u)        { printf("%08lX", u); } // To make hex output always aligned to 8 hex digits.
 static void COut_PutN(void)          { printf("\n"); }
 
-#else
+ //this else part is to be able to test the output on arduino, 
+ //here we use putchar to print out because it doesnt take as much space as printf()
+#else 
 #include "_xtoa.h"
 
 // External refs to 'console.c' without

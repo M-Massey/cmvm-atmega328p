@@ -28,7 +28,7 @@ int main(void) {
     Hal_Init();
 
     VMOut_PutS("Test VM Operand Stack:\n");
-    VMOut_PutS("[ ][ 2 1 ][ 3 ][ 3 3 ][ 9 ][ 8 9 ][ 1 ][ ]\r\n");
+    VMOut_PutS("[ ][ 2 1 ][ 3 ][ 3 3 ][ 9 ][ 8 9 ][ 1 ][ ]\n");
 
     VM_Init(0);                   // top->[ ]
 

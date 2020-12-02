@@ -92,8 +92,8 @@ IOut Out_GetFactory(const char* whichOne) {
 #define MS_DELAY 1000
 
 static void TestCout(void) {
-    COut_PutS("Test xtoa\r\n");
-    COut_PutS("123456789ABCDEF\r\n");
+    COut_PutS("Test xtoa\n");
+    COut_PutS("123456789ABCDEF\n");
 
     _itoa(1234, buf);            COut_PutS(buf);
     _utoa(56789, buf, 0, 10);    COut_PutS(buf);

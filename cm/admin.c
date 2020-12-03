@@ -47,9 +47,9 @@ static void Usage() {
     VMOut_PutS("\n         -? -help    Display options and exit.\n");
 }
 
-#define MemMax        3000  //3000 for adruino
-#define MemAllocated  (3000+1024)
-/*public*/  u8*    mem[] = { 0x91, 0xFF, 0x82, 0x00 };
+#define MemMax        4096  //3000 for adruino
+#define MemAllocated  (3096+1024)
+/*public*/  u8*    mem;
 /*public*/  u8     memAllocated[MemAllocated]; //replace this with hardcoded program to see if it works on arduino before implementing the serdial loader
 
 // To get the base RAM address on a memory segment increment.
@@ -131,7 +131,7 @@ int main(int argc, char* argv[]) {
 //t    VMOut_PutS("GetBaseAddr(): sizeof u8* = "); VMOut_PutI((i32)sizeof(u8*)); VMOut_PutN();
 //t    VMOut_PutS("GetBaseAddr(): sizeof u32 = "); VMOut_PutI((i32)sizeof(u32)); VMOut_PutN();
 
-    mem[0] = GetBaseAddr(memAllocated, (u32)1024UL);
+    mem = GetBaseAddr(memAllocated, (u32)1024UL);
 //t    VMOut_PutS("Admin: memAllocated = "); VMOut_PutX((u32)memAllocated); VMOut_PutN();
 //t    VMOut_PutS("Admin: mem          = "); VMOut_PutX((u32)mem); VMOut_PutN();
 

@@ -6,7 +6,7 @@
 
 #include "_outdesc.h"
 
-#define ConsoleOutputWithPrintf 1
+//#define ConsoleOutputWithPrintf 1
 
 #if ConsoleOutputWithPrintf
 
@@ -33,9 +33,9 @@ static char  buf[12];                /* to cover max size (12) "i32" (10+sign+nu
 static void COut_PutB(bool b)        { Console_Putchar(b ? 'T' : 'F'); }
 static void COut_PutC(char c)        { Console_Putchar(c); }
 static void COut_PutS(const char* s) { while (*s) Console_Putchar(*s++); }
-static void COut_PutI(i32  i)        { System_itoa(i, buf); COut_PutS(buf); }
-static void COut_PutU(u32  u)        { System_utoa(u, buf, 10); COut_PutS(buf); }
-static void COut_PutX(u32  x)        { System_utoa(x, buf, 16); COut_PutS(buf); } // Same behavior as Dos16 VM: 
+static void COut_PutI(i32  i)        { _itoa(i, buf); COut_PutS(buf); }
+static void COut_PutU(u32  u)        { _utoa(u, buf, 10); COut_PutS(buf); }
+static void COut_PutX(u32  x)        { _utoa(x, buf, 16); COut_PutS(buf); } // Same behavior as Dos16 VM: 
                                                                                    // Hex alpha in upppercase
 static void COut_PutN(void)          { Console_Putchar('\n'); }
 #endif

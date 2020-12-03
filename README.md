@@ -18,3 +18,8 @@ To test BLS and HAL on the microconroller:
 These .bat files load the program on the microcotnroller. 
 You can compare the output in Putty with the expected output to see if characters are transmited in the right way.
 
+
+To see the binary contents of the executable files T01.exe...T12.exe
+- compile the dumpFile.c : gcc -o dupmf dumpFile.c
+- run : dumpf dist\T01.exe
+

@@ -5,9 +5,10 @@
 
 ## Important Links
 
-[Professor Communications]("docs/list-of-comms.md")
+[Professor Communications](docs/list-of-comms.md)
 
 ## Instructions from Nat
+
 To compile the virtual machine on your host : bash build.sh
 This will create an executable in the dist folder.
 
@@ -31,4 +32,3 @@ To see the binary contents of the executable files T01.exe...T12.exe
 
 - compile the dumpFile.c : gcc -o dupmf dumpFile.c
 - run : dumpf dist\T01.exe
-

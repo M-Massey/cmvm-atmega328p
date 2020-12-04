@@ -69,8 +69,9 @@ dkms.conf
 
 # Remove generated binaries
 **/bin/*
-# Keep the directories
-!/bin/.keepDir
+
+# Keep the directory structure with .keepDir leaf files
+!**/.keepDir
 
 # Keep precompiled Cm tests
 !**/T??.exe

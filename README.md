@@ -1,18 +1,29 @@
 # Cm VM port for Atmega 328p<!-- omit in toc -->
 
-- [Important Links](#important-links)
+- [Important Repo Locations](#important-repo-locations)
 - [Instructions from Nat](#instructions-from-nat)
 
-## Important Links
+## Important Repo Locations
 
-[Professor Communications](docs/list-of-comms.md)
+- [Professor Communications](docs/list-of-comms.md)
+- [Cm VM and Test Suite Precompiled for Windows x64](ref_src/nat/cm/dist)
 
 ## Instructions from Nat
 
-To compile the virtual machine on your host : bash build.sh
+To compile the virtual machine on your host :
+
+```bash
+gcc -o dist/cm _console.c _cout.c _xtoa.c admin.c hal.c ioreg.c out.c vm.c vmstack.c
+```
+
 This will create an executable in the dist folder.
 
-To compile the AUnit.c : gcc -o build/aunit AUnit.c
+To compile the AUnit.c : 
+
+```bash
+gcc -o build/aunit AUnit.c
+```
+
 This will create an executable in the dist folder
 
 To run the tests: cm.exe T01.exe > T1.txt

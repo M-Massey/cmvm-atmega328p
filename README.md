@@ -5,6 +5,7 @@
 - [1. Important Repo Locations](#1-important-repo-locations)
 - [2. Prerequisites](#2-prerequisites)
 - [3. Task 0: Port & Compile AUnit](#3-task-0-port--compile-aunit)
+- [](#)
 - [Useful References](#useful-references)
 - [Instructions from Nat](#instructions-from-nat)
 
@@ -25,24 +26,26 @@ Mac:
 
 - [GCC Compiler - Command Line Tools for Xcode](https://developer.apple.com/download/more/)
 
-Linux:
-
--  
 
 ## 3. Task 0: Port & Compile AUnit
 
 Windows/Mac/Linux:
 
+Run the following from the root of the repo.
+
 ```bash
-gcc -o tools/bin/aunit AUnit.c
+gcc -o tools/bin/aunit tools/AUnit.c
 ```
 
-
+## 
 
 
 ## Useful References
 
 - [Atmega328p External Interrupts Explanation](https://www.arxterra.com/11-atmega328p-external-interrupts/#ATmega328P_External_Interrupt_Enable)
+- [i386 Instruction Set](https://pdos.csail.mit.edu/6.828/2008/readings/i386/c17.htm)
+- [AMD64 Instruction Handout](http://6.s081.scripts.mit.edu/sp18/x86-64-architecture-guide.html)
+- [AMD64 Manual Volume 1](https://www.amd.com/system/files/TechDocs/24592.pdf)
 
 ## Instructions from Nat
 

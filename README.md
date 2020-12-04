@@ -5,6 +5,7 @@
 - [1. Important Repo Locations](#1-important-repo-locations)
 - [2. Prerequisites](#2-prerequisites)
 - [3. Task 0: Port & Compile AUnit](#3-task-0-port--compile-aunit)
+  - [Change log](#change-log)
 - [4. Task 1: Port & Compile Cm VM](#4-task-1-port--compile-cm-vm)
 - [5. Tasks 2-4: Isolate and port the BSL and HAL layers to Atmega328p](#5-tasks-2-4-isolate-and-port-the-bsl-and-hal-layers-to-atmega328p)
 - [6. Task 5: Implement a program loader](#6-task-5-implement-a-program-loader)
@@ -43,6 +44,20 @@ Run the following from the root of the repo.
 
 ```bash
 gcc -o tools/bin/aunit tools/AUnit.c
+```
+
+### Change log
+
+1. Added exit code to return statement to get rid of this warning:
+
+```txt
+tools\AUnit.c: In function 'main':
+tools\AUnit.c:121:13: warning: 'return' with no value, in function returning non-void
+  121 |             return;
+      |             ^~~~~~
+tools\AUnit.c:53:5: note: declared here
+   53 | int main(int argc, char** argv) {
+      |  
 ```
 
 ## 4. Task 1: Port & Compile Cm VM

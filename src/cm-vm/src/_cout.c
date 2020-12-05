@@ -34,8 +34,8 @@ static void COut_PutB(bool b)        { Console_Putchar(b ? 'T' : 'F'); }
 static void COut_PutC(char c)        { Console_Putchar(c); }
 static void COut_PutS(const char* s) { while (*s) Console_Putchar(*s++); }
 static void COut_PutI(i32  i)        { _itoa(i, buf); COut_PutS(buf); }
-static void COut_PutU(u32  u)        { _utoa(u, buf, 10); COut_PutS(buf); }
-static void COut_PutX(u32  x)        { _utoa(x, buf, 16); COut_PutS(buf); } // Same behavior as Dos16 VM: 
+static void COut_PutU(u32  u)        { _utoa(u, buf, 10, 16); COut_PutS(buf); }
+static void COut_PutX(u32  x)        { _utoa(x, buf, 16, 16); COut_PutS(buf); } // Same behavior as Dos16 VM: 
                                                                                    // Hex alpha in upppercase
 static void COut_PutN(void)          { Console_Putchar('\n'); }
 #endif

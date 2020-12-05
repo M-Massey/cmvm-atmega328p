@@ -7,7 +7,7 @@
 #include "ioreg.h"
 
 #ifndef IORegToMockUart
-#include <dos.h>
+//#include <dos.h>
 #endif
 
 // Software internal counters and values

@@ -10,18 +10,18 @@
 
 typedef void (__interrupt __far *Handler)();
 
-public void  __cli(void) { _CLI(); }
+public void  __cli(void) { cli(); }
 public void  __sei(void)  { sei(); }
 
 public u16   __saveAndDisable(void) { 
     u16 flags =  SREG;
-    Interrupt_Disable();
+    __cli();
     return flags;
 };
 
 public void  __restore(u16 flags) {
     SREG = flags;
-    Interrupt_Enable();
+    __sei();
 };
 
 // Not yet implemented

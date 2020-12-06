@@ -5,10 +5,10 @@
 */
 
 #include "hal.h"      // Hal_Init()
-// #include "hal_Out.h"  // All VMOut_Put*
+#include "hal_Out.h"  // All VMOut_Put*
 
-#include "interman.h"
-// #include "hal_interman.h"
+#include "bsl_interman.h"
+#include "hal_interman.h"
 
 // Interrupt Bit is the I-Bit (Bit 7) of SREG (AVR Status Register).
 // When I-Bit is cleared (0) all interrupts are disabled.

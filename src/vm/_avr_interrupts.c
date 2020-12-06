@@ -9,10 +9,8 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-typedef void (__interrupt __far *Handler)();
-
-public void  __cli(void) { cli(); }
-public void  __sei(void)  { sei(); }
+void  __cli(void) { cli(); }
+void  __sei(void)  { sei(); }
 
 u16   __saveAndDisable(void) { 
     u16 flags =  SREG;

@@ -4,8 +4,9 @@
 //
 */
 
-#ifndef __interrupts_h
-#define __interrupts_h
+#ifndef __avr_interrupts_h
+
+#define __avr_interrupts_h
 
 #include "_avr_stdtype.h"
 
@@ -15,8 +16,8 @@ void __sei();
 u16 __saveAndDisable();
 void __restore(u16 flags);
 
-// Not yet implemented
-// void  __setVector(u8 number, u32 handlerAddr);
-// u32   __getVector(u8 number);
+// Following are not yet implemented
+void  __setVector(u8 number, u32 handlerAddr);
+u32   __getVector(u8 number);
 
 #endif

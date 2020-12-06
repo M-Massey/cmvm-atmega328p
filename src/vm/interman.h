@@ -8,11 +8,11 @@
 #define __interman_h
 
 #ifdef AVR
-#include "avr/_avr_stdtype.h"
-#include "avr/_avr_interrupts.h"
+#include "_avr_stdtype.h"
+#include "_avr_interrupts.h"
 #else
-#include "win/_win_stdtype.h"
-#include "win/_win_interrupts.h"
+#include "_win_stdtype.h"
+#include "_win_interrupts.h"
 #endif
 
 void  Interrupt_Disable(void);

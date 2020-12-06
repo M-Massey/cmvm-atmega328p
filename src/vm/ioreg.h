@@ -7,11 +7,10 @@
 #ifndef __CmVM_IOReg_h
 #define __CmVM_IOReg_h
 
-#ifndef AVR
-#include "_win_stdtype.h"
-#endif
 #ifdef AVR
 #include "_avr_stdtype.h"
+#else
+#include "_win_stdtype.h"
 #endif
 
 

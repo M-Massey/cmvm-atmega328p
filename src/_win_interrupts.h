@@ -1,6 +1,7 @@
-#ifndef __interrupts_h
-#define __interrupts_h
+#ifndef __win_interrupts_h
+#define __win_interrupts_h
 
+#include "_win_interrupts.h"
 #include "_win_stdtype.h"
 
 typedef void (__interrupt __far *Handler)();

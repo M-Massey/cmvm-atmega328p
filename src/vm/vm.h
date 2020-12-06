@@ -7,11 +7,10 @@
 #ifndef __vm_h
 #define __vm_h
 
-#ifndef AVR
-#include "_win_stdtype.h"
-#endif
 #ifdef AVR
 #include "_avr_stdtype.h"
+#else
+#include "_win_stdtype.h"
 #endif
 
 void VM_Init(u8* mainAddr);

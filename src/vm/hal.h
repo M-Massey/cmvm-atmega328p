@@ -8,11 +8,10 @@
 #ifndef __hal_h
 #define __hal_h
 
-#ifndef AVR
-#include "_win_out.h"
-#endif
 #ifdef AVR
 #include "_avr_out.h"
+#else
+#include "_win_out.h"
 #endif
 
 void Hal_Init(void);

@@ -32,8 +32,7 @@ static u8  mem[MemMax];
 
 int main() {
     u8 status;
-
-    bsl_Uart_Init();
+    
     Hal_Init();
 
     while (1) {

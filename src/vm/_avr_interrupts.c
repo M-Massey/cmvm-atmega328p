@@ -20,7 +20,6 @@ u16   __saveAndDisable(void) {
 
 void  __restore(u16 flags) {
     SREG = flags;
-    __sei();
 }
 
 // Not yet implemented

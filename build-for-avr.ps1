@@ -1,7 +1,9 @@
 # Powershell Script to compile, test, and upload the CmVM for Windows 64-bit and AVR 8-bit platforms
 
 param (
-    [System.IO.FileInfo]$Loader
+    [System.IO.FileInfo]$Loader,
+    [switch]$Upload,
+    [string]$UploadPort
 )
 
 $ErrorActionPreference = "Stop";
@@ -29,9 +31,19 @@ if ($Loader.Exists) {
     
     Set-Location ../..
 
+    avr-objcopy -O ihex -j .text -j .data .\bin\avr.o .\bin\avr.hex
+
 }
 else {
     Write-Host "Could not find specified program loader implementation."
 }
 
+if ($Upload -and $UploadPort.Length -gt 0) {
+    
+    avrdude -c arduino -p atmega328p -b 57600 -P $UploadPort -D -Uflash:w:bin/avr.hex:i
+}
+elseif ($Upload) {
+    Write-Error "Please specify a port!"
+    Write-Host "Exitting..."
+}
 

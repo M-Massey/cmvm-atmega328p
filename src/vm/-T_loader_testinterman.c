@@ -5,10 +5,11 @@
 */
 
 #include "hal.h"      // Hal_Init()
-#include "hal_Out.h"  // All VMOut_Put*
+#include "out.h"      // All VMOut_Put*
 
-#include "bsl_interman.h"
-#include "hal_interman.h"
+#include "interman.h"
+#include <avr/io.h>
+#include <avr/interrupt.h>
 
 // Interrupt Bit is the I-Bit (Bit 7) of SREG (AVR Status Register).
 // When I-Bit is cleared (0) all interrupts are disabled.
@@ -17,6 +18,7 @@
 // Instruction CLI CLears I-Bit to 0 which disable interrupts.
 // Ref: Atmel 8-bit ATmega328P Datasheet - Section 7.3
 #define InterruptBit     ((u8)0x80)
+#define GetStatusReg()     SREG
 
 #define Enabled  "[e]"
 #define Disabled "[d]"
@@ -80,7 +82,7 @@ int main(void ) {
     VMOut_PutS("<EI>");
     Interrupt_Enable();
 
-    VMOut_PutS("I");
+    // VMOut_PutS("I");
     VMOut_PutS( (GetStatusReg() & InterruptBit) ? Enabled : Disabled);
 
     VMOut_PutS("<SDI>");
@@ -98,7 +100,7 @@ int main(void ) {
     VMOut_PutS( (GetStatusReg() & InterruptBit) ? Enabled : Disabled);
 
     VMOut_PutS(" | ");
-    VMOut_PutS("OnExit: ");
+    VMOut_PutS("OnExit: I");
     VMOut_PutS( (GetStatusReg() & InterruptBit) ? Enabled : Disabled);
     VMOut_PutN();
 

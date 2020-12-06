@@ -22,6 +22,10 @@
 #include "ioreg.h"
 #endif
 
+#ifdef InterruptManagerOn
+#include "interman.h"
+#endif
+
 extern  u8*   mem; // Need the memory address for the loader.
 
 #define SpInitial  200

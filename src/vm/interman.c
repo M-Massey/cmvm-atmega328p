@@ -5,33 +5,22 @@
 */
 
 #include "interman.h"
-#include <avr/io.h>
-#include <avr/interrupt.h>
 
-typedef void (__interrupt __far *Handler)();
+void  Interrupt_Disable(void) { __cli(); }
+void  Interrupt_Enable(void)  { __sei(); }
 
-public void  Interrupt_Disable(void) { 
-    _CLI();
-    };
-public void  Interrupt_Enable(void)  {
-     sei();
-     };
+u16   Interrupt_SaveAndDisable(void) { 
+    return __saveAndDisable(); 
+}
 
-public u16   Interrupt_SaveAndDisable(void) { 
-    u16 flags =  SREG;
-    Interrupt_Disable();
-    return flags;
-};
+void  Interrupt_Restore(u16 flags) { 
+    return __restore(flags);
+ }
 
-public void  Interrupt_Restore(u16 flags) { __restore();
-    SREG = flags;
-    Interrupt_Enable();
-};
+void  Interrupt_SetVector(u8 number, u32 handlerAddr) {
+    __setVector(number, handlerAddr);
+}
 
-// public void  Interrupt_SetVector(u8 number, u32 handlerAddr) {
-//     _dos_setvect(number, (Handler)handlerAddr);
-// }
-
-// public u32   Interrupt_GetVector(u8 number) {
-//     return (u32)_dos_getvect(number);
-// }
+u32   Interrupt_GetVector(u8 number) {
+    return __getVector(number);
+}

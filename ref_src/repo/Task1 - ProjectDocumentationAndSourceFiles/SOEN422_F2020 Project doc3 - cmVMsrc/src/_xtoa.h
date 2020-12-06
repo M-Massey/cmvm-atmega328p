@@ -9,7 +9,7 @@
 
 #include "_stdtype.h"
 
-void _utoa(u32 n, char* buf, i8 next, u8 base);
+void _utoa(u32 n, char* buf, int next, u8 base);
 
 void _itoa(i32 i, char* buf);
 

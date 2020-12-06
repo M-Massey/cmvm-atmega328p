@@ -4,7 +4,7 @@
 //
 */
 
-#include "_outdesc.h"
+#include "_avr_outdesc.h"
 
 //#define ConsoleOutputWithPrintf 1
 
@@ -23,7 +23,7 @@ static void COut_PutN(void)          { printf("\n"); }
  //this else part is to be able to test the output on arduino, 
  //here we use putchar to print out because it doesnt take as much space as printf()
 #else 
-#include "_xtoa.h"
+#include "_avr_xtoa.h"
 
 // External refs to 'console.c' without
 void  Console_Putchar(char  c);
@@ -34,8 +34,8 @@ static void COut_PutB(bool b)        { Console_Putchar(b ? 'T' : 'F'); }
 static void COut_PutC(char c)        { Console_Putchar(c); }
 static void COut_PutS(const char* s) { while (*s) Console_Putchar(*s++); }
 static void COut_PutI(i32  i)        { _itoa(i, buf); COut_PutS(buf); }
-static void COut_PutU(u32  u)        { _utoa(u, buf, 10, 16); COut_PutS(buf); }
-static void COut_PutX(u32  x)        { _utoa(x, buf, 16, 16); COut_PutS(buf); } // Same behavior as Dos16 VM: 
+static void COut_PutU(u32  u)        { System_utoa(u, buf, 10); COut_PutS(buf); }
+static void COut_PutX(u32  x)        { System_utoa(x, buf, 16); COut_PutS(buf); } // Same behavior as Dos16 VM: 
                                                                                    // Hex alpha in upppercase
 static void COut_PutN(void)          { Console_Putchar('\n'); }
 #endif

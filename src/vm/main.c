@@ -1,6 +1,10 @@
 
-#include <avr/io.h>
+#ifdef AVR
+
+#include "hal.h"
+#include "out.h"
 #include "vm.h"
+#include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #define MS_DELAY 1000
@@ -15,10 +19,10 @@ u8 data[] = { 0xE1, 0x00, 0x25, 0x71, 0xD5, 0x00, 0x2F, 0xFF, 0x85, 0xD5, 0x00, 
 
 int main (void) {
     
-// Hal_Init();
-//     // Set onboard LED for output. Just to see a blinking feedback from the Nano board.
-//     VM_Init(mem);
-//     VM_execute(mem);
+    Hal_Init();
+    // Set onboard LED for output. Just to see a blinking feedback from the Nano board.
+    VM_Init(mem);
+    VM_execute(mem);
 
     DDRB |= (1 << PB5);
     while(1) {
@@ -31,6 +35,14 @@ int main (void) {
 
 
 }
+#endif
+
+
+
+
+
+// #ifndef AVR
+
 
 // /* admin.c - admin for the Cm Embedded Virtual Machine which:
 // //         - isolates the <stdio.h> with all put* in the VM
@@ -74,27 +86,26 @@ int main (void) {
 //     VMOut_PutS(VMName); VMOut_PutS(AppSuffix); VMOut_PutS(Version); VMOut_PutS(Target); VMOut_PutN();
 //     VMOut_PutS(Copyright); VMOut_PutN();
 // }
-
 // static void Usage() {
 //     VMOut_PutS("\nUsage: "); VMOut_PutS(AppName); VMOut_PutS(" Options? <file.exe>\n");
 //     VMOut_PutS("\n         -v          Display the version and exit.");
 //     VMOut_PutS("\n         -? -help    Display options and exit.\n");
 // }
 
-// #define MemMax        4096  //3000 for adruino
-// #define MemAllocated  (3096+1024)
+// #define MemMax        4096
+// #define MemAllocated  (4096+1024)
 // /*public*/  u8*    mem;
-// /*public*/  u8     memAllocated[MemAllocated]; //replace this with hardcoded program to see if it works on arduino before implementing the serdial loader
+// /*public*/  u8     memAllocated[MemAllocated];
 
 // // To get the base RAM address on a memory segment increment.
 // static u8* GetBaseAddr(u8* memAddr, u32 memInc) {
 //     u32 a = (u32)memAddr + memInc;
 //     u32 m = memInc - 1U;
-//     VMOut_PutS("Admin: a = "); VMOut_PutX((u32)a); VMOut_PutN();
-//     VMOut_PutS("Admin: m = "); VMOut_PutX((u32)m); VMOut_PutN();
+// //t    VMOut_PutS("Admin: a = "); VMOut_PutX((u32)a); VMOut_PutN();
+// //t    VMOut_PutS("Admin: m = "); VMOut_PutX((u32)m); VMOut_PutN();
 
 //     u32 r = a & ~m;
-//     VMOut_PutS("Admin: r = "); VMOut_PutX((u32)r); VMOut_PutN();
+// //t    VMOut_PutS("Admin: r = "); VMOut_PutX((u32)r); VMOut_PutN();
 //     return (u8*)r;
 // }
 
@@ -105,11 +116,11 @@ int main (void) {
 //     u16 n, size;
 //     u8  buf[2];
 
-//     buf[0] = (u8)fgetc(f);             // Read size.msb most sgnificant bit
-//     buf[1] = (u8)fgetc(f);             // Read size.lsb least significant bit
+//     buf[0] = (u8)fgetc(f);             // Read size.msb
+//     buf[1] = (u8)fgetc(f);             // Read size.msb
 //     size = (u16)((buf[0] << 8) | buf[1]);
 
-//  VMOut_PutS("loadObjFile of size = "); VMOut_PutX((u32)size); VMOut_PutN();
+// //t VMOut_PutS("loadObjFile of size = %u\n", (u32)size);
 
 //     if (size <= maxSize) {
 //         for (n = 0; n < size; n++) {
@@ -155,8 +166,9 @@ int main (void) {
 //     const char* name;
 //     const char* ext;
 //     int   i = 1;
-//      //VMOut_PutS("argv[0] ="); VMOut_PutS(argv[0]);
-//     VMOut_PutS(strcat(strcat("argv[1] = [", argv[1]), "]\n"));
+
+// //t VMOut_PutS("argv[0] = [%s]\n", argv[0]);
+// //t VMOut_PutS("argv[1] = [%s]\n", argv[1]);
 
 //     // Do Hal_Init() before any option messages.
 //     Hal_Init();
@@ -169,61 +181,63 @@ int main (void) {
 // //t    VMOut_PutS("Admin: memAllocated = "); VMOut_PutX((u32)memAllocated); VMOut_PutN();
 // //t    VMOut_PutS("Admin: mem          = "); VMOut_PutX((u32)mem); VMOut_PutN();
 
-// //     /* Parse options */
-// //     for (; i < argc; i++) {
-// //         if ( (strcmp(argv[i], "-?") == 0) || (strcmp(argv[i], "-help") == 0) ) {
-// //             Usage();
-// //             return 0;
-// //         } else if (strcmp(argv[i], "-v") == 0) {
-// //             DisplayBanner();
-// //             return 0;
-// //         } else {
-// //             break;
-// //         }
-// //     }
+//     /* Parse options */
+//     for (; i < argc; i++) {
+//         if ( (strcmp(argv[i], "-?") == 0) || (strcmp(argv[i], "-help") == 0) ) {
+//             Usage();
+//             return 0;
+//         } else if (strcmp(argv[i], "-v") == 0) {
+//             DisplayBanner();
+//             return 0;
+//         } else {
+//             break;
+//         }
+//     }
 
-// //     /* Parse file */
-// //     if (i == argc-1) {
-// //         char *pfile;
+//     /* Parse file */
+//     if (i == argc-1) {
+//         char *pfile;
 
-// //         strcpy(filename, argv[i]);   /* save name and extension */
-// // //t        VMOut_PutS("Parse file: Filename: '%s'\n", filename);
+//         strcpy(filename, argv[i]);   /* save name and extension */
+// //t        VMOut_PutS("Parse file: Filename: '%s'\n", filename);
 
-// //         name = GetFileName(filename);
-// //         ext  = GetFilenameExt(filename);
-// //         strcpy(filename, name);
+//         name = GetFileName(filename);
+//         ext  = GetFilenameExt(filename);
+//         strcpy(filename, name);
 
-// // //t        VMOut_PutS("Filename: '%s' Name: '%s' Ext: '%s':\n", filename, name, ext);
+// //t        VMOut_PutS("Filename: '%s' Name: '%s' Ext: '%s':\n", filename, name, ext);
 
-// //         if (ext && (strcmp(ext, "exe") == 0)) {  /* 3 characters extension maximum */
-// //             char pb[50];
+//         if (ext && (strcmp(ext, "exe") == 0)) {  /* 3 characters extension maximum */
+//             char pb[50];
 
-// //             strcpy(pb, "");
-// //             pfile = strcat(pb, filename);
+//             strcpy(pb, "");
+//             pfile = strcat(pb, filename);
 
-// // //t            VMOut_PutS("fopen: Filename: '%s'\n", pfile);
+// //t            VMOut_PutS("fopen: Filename: '%s'\n", pfile);
 
-// //             file = fopen(pfile, "rb" );
-// //             if (file == NULL) {
-// //                 VMOut_PutS(filename); VMOut_PutS(" does not exist.\n");
-// //                 return -1;
-// //             }
+//             file = fopen(pfile, "rb" );
+//             if (file == NULL) {
+//                 VMOut_PutS(filename); VMOut_PutS(" does not exist.\n");
+//                 return -1;
+//             }
 
-// //             if (!loadObjFile(file, MemMax)) { // not a success because too big
-// //                 return -2;
-// //             }
-// //         } else {
-// //             VMOut_PutS("Error: Must have a file with '.exe' extension.\n");
-// //             Usage();
-// //             return -3;
-// //         }
-// //     } else {
-// //         VMOut_PutS("Error: Must have a file to load.\n");
-// //         Usage();
-// //         return -4;
-// //     }
+//             if (!loadObjFile(file, MemMax)) { // not a success because too big
+//                 return -2;
+//             }
+//         } else {
+//             VMOut_PutS("Error: Must have a file with '.exe' extension.\n");
+//             Usage();
+//             return -3;
+//         }
+//     } else {
+//         VMOut_PutS("Error: Must have a file to load.\n");
+//         Usage();
+//         return -4;
+//     }
 
 //     VM_Init(mem);
 //     VM_execute(mem);
 //     return 0;
 // }
+
+// #endif

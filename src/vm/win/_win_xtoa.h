@@ -7,9 +7,9 @@
 #ifndef __CmVM_xtoa_h
 #define __CmVM_xtoa_h
 
-#include "_stdtype.h"
+#include "_win_stdtype.h"
 
-void _utoa(u32 n, char* buf, i8 next, u8 base);
+void _utoa(u32 n, char* buf, int next, u8 base);
 
 void _itoa(i32 i, char* buf);
 

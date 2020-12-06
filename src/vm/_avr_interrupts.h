@@ -5,7 +5,6 @@
 */
 
 #ifndef __avr_interrupts_h
-
 #define __avr_interrupts_h
 
 #include "_avr_stdtype.h"

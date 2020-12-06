@@ -24,7 +24,8 @@ if ($Loader.Exists) {
         ioreg.c `
         _avr_console.c `
         _avr_cout.c `
-        _avr_xtoa.c
+        _avr_xtoa.c `
+        _avr_interrupts.c
     
     Set-Location ../..
 

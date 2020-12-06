@@ -56,11 +56,11 @@ static void Usage() {
 static u8* GetBaseAddr(u8* memAddr, u32 memInc) {
     u32 a = (u32)memAddr + memInc;
     u32 m = memInc - 1U;
-    VMOut_PutS("Admin: a = "); VMOut_PutX((u32)a); VMOut_PutN();
-    VMOut_PutS("Admin: m = "); VMOut_PutX((u32)m); VMOut_PutN();
+    // VMOut_PutS("Admin: a = "); VMOut_PutX((u32)a); VMOut_PutN();
+    // VMOut_PutS("Admin: m = "); VMOut_PutX((u32)m); VMOut_PutN();
 
     u32 r = a & ~m;
-    VMOut_PutS("Admin: r = "); VMOut_PutX((u32)r); VMOut_PutN();
+    // VMOut_PutS("Admin: r = "); VMOut_PutX((u32)r); VMOut_PutN();
     return (u8*)r;
 }
 
@@ -75,7 +75,7 @@ static bool loadObjFile(FILE* f, u16 maxSize) {
     buf[1] = (u8)fgetc(f);             // Read size.lsb least significant bit
     size = (u16)((buf[0] << 8) | buf[1]);
 
- VMOut_PutS("loadObjFile of size = "); VMOut_PutX((u32)size); VMOut_PutN();
+ // VMOut_PutS("loadObjFile of size = "); VMOut_PutX((u32)size); VMOut_PutN();
 
     if (size <= maxSize) {
         for (n = 0; n < size; n++) {
@@ -121,8 +121,6 @@ int main(int argc, char* argv[]) {
     const char* name;
     const char* ext;
     int   i = 1;
-     //VMOut_PutS("argv[0] ="); VMOut_PutS(argv[0]);
-    VMOut_PutS("argv[1] = ["+argv[1]+"]\n");
 
     // Do Hal_Init() before any option messages.
     Hal_Init();

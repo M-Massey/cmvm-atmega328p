@@ -5,7 +5,6 @@
 #include "out.h"
 #include "vm.h"
 #include <avr/io.h>
-#include <avr/interrupt.h>
 #include <util/delay.h>
 #define MS_DELAY 1000
 

@@ -11,8 +11,8 @@
 
 void _utoa(u32 n, char* buf, int next, u8 base);
 
-void System_itoa(i32 i, char* buf);
+void _itoa(i32 i, char* buf);
 
-#define     System_utoa(n,buf,base)          _utoa(n,buf,0,base)
+#define     _utoa(n,buf,base)          _utoa(n,buf,0,base)
 
 #endif

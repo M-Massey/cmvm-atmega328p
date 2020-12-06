@@ -8,7 +8,12 @@
 #ifndef __hal_h
 #define __hal_h
 
-#include "_out.h"
+#ifndef AVR
+#include "_win_out.h"
+#endif
+#ifdef AVR
+#include "_avr_out.h"
+#endif
 
 void Hal_Init(void);
 

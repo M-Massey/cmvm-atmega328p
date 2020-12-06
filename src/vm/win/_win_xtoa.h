@@ -7,11 +7,11 @@
 #ifndef __CmVM_xtoa_h
 #define __CmVM_xtoa_h
 
-#include "_stdtype.h"
+#include "_win_stdtype.h"
 
 void _utoa(u32 n, char* buf, int next, u8 base);
 
-void System_itoa(i32 i, char* buf);
+void _itoa(i32 i, char* buf);
 
 #define     System_utoa(n,buf,base)          _utoa(n,buf,0,base)
 

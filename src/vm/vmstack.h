@@ -7,7 +7,12 @@
 #ifndef __CmVMStack_h
 #define __CmVMStack_h
 
-#include "_stdtype.h"
+#ifndef AVR
+#include "_win_stdtype.h"
+#endif
+#ifdef AVR
+#include "_avr_stdtype.h"
+#endif
 
         struct VMStackDesc;
 typedef struct VMStackDesc*  Stack;

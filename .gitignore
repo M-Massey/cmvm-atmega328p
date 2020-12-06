@@ -75,6 +75,7 @@ dkms.conf
 
 # Keep precompiled Cm tests
 !**/T??.exe
+!**/ST??.exe
 
 # Keep everything under nat
 !**/nat/**

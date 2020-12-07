@@ -10,8 +10,10 @@
 
 #ifdef AVR
 #include "_avr_stdtype.h"
+#include "_avr_ioreg.h"
 #else
 #include "_win_stdtype.h"
+#include "_win_ioreg.h"
 #endif
 
 u32  IOReg_Read (u32 ioreg);

@@ -3,7 +3,7 @@
 // Copyright (C) 2020 by Michel de Champlain
 //
 */
- #define LoadFromFile
+#define LoadFromFile
 using System;
 using System.IO;
 using System.IO.Ports;

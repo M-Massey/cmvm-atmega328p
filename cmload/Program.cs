@@ -9,7 +9,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Threading;
 
-namespace loader {
+namespace CmLoader {
 public class SerialComPort {
     private const byte Ack = 0xCC;
     private const byte Nak = 0x33;

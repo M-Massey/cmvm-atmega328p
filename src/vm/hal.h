@@ -8,6 +8,7 @@
 #ifndef __hal_h
 #define __hal_h
 
+
 #ifdef AVR
 #include "_avr_out.h"
 #else

@@ -7,7 +7,16 @@
 #ifndef __CmVM_VMOut_h
 #define __CmVM_VMOut_h
 
+<<<<<<< HEAD:nat/cm/out.h
 #include "_out.h"
+=======
+
+#ifdef AVR
+#include "_avr_out.h"
+#else
+#include "_win_out.h"
+#endif
+>>>>>>> main:src/vm/out.h
 
 void VMOut_Init(IOut out);
 

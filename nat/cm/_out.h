@@ -7,7 +7,11 @@
 #ifndef __CmVM_Out_h
 #define __CmVM_Out_h
 
+<<<<<<< HEAD:nat/cm/_out.h
 #include "_stdtype.h"
+=======
+#include "_avr_stdtype.h"
+>>>>>>> main:src/vm/_avr_out.h
 
         struct IVMOutDesc;
 typedef struct IVMOutDesc* IOut;

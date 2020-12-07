@@ -7,7 +7,15 @@
 #ifndef __CmVMStack_h
 #define __CmVMStack_h
 
+<<<<<<< HEAD:nat/cm/vmstack.h
 #include "_stdtype.h"
+=======
+#ifdef AVR
+#include "_avr_stdtype.h"
+#else
+#include "_win_stdtype.h"
+#endif
+>>>>>>> main:src/vm/vmstack.h
 
         struct VMStackDesc;
 typedef struct VMStackDesc*  Stack;

@@ -7,7 +7,6 @@
 #ifndef __CmVM_VMOut_h
 #define __CmVM_VMOut_h
 
-
 #ifdef AVR
 #include "_avr_out.h"
 #else

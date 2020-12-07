@@ -118,7 +118,11 @@ int main(int argc, char** argv) {
             printf("%c", status);
         } else {
             printf("\nTest #%d  should start with \"Test ...\" (see file 'runTests.txt' for details)\n", testNumber+1);
+<<<<<<< HEAD:nat/cm/dist/AUnit.c
             return;
+=======
+            return 0;
+>>>>>>> main:tools/AUnit.c
         }
         ++testNumber;
     }

@@ -7,12 +7,12 @@
 #ifndef __CmVM_IOReg_h
 #define __CmVM_IOReg_h
 
+
 #ifdef AVR
 #include "_avr_stdtype.h"
 #else
 #include "_win_stdtype.h"
 #endif
-
 
 u32  IOReg_Read (u32 ioreg);
 void IOReg_Write(u32 ioreg, u32 value);

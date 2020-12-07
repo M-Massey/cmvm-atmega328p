@@ -5,10 +5,17 @@
 */
 
 #include "hal.h"     // hal_Init()
+<<<<<<< HEAD:nat/cm/tout.c
 #include "out.h" // All VMOut_Put*
 
 int main(void) {
     Hal_Init();
+=======
+#include "hal_Out.h" // All VMOut_Put*
+
+int main(void) {
+    hal_Init();
+>>>>>>> main:tests/admin/tout.c
 
     VMOut_PutS("Test Out:<2\n");
     VMOut_PutS("Bools: [T|F|T|T]\n");

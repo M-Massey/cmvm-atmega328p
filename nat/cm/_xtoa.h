@@ -7,9 +7,15 @@
 #ifndef __CmVM_xtoa_h
 #define __CmVM_xtoa_h
 
+<<<<<<< HEAD:nat/cm/_xtoa.h
 #include "_stdtype.h"
 
 void _utoa(u32 n, char* buf, i8 next, u8 base);
+=======
+#include "_avr_stdtype.h"
+
+void _utoa(u32 n, char* buf, int next, u8 base);
+>>>>>>> main:src/vm/_avr_xtoa.h
 
 void _itoa(i32 i, char* buf);
 

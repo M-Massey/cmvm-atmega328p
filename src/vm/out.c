@@ -3,13 +3,13 @@
 // Copyright (C) 1999-2020 by Michel de Champlain
 //
 */
+
 #ifndef AVR
 #include "_win_outdesc.h"
 #endif
 #ifdef AVR
 #include "_avr_outdesc.h"
 #endif
-
 #include "out.h"
 
 static IOut vmOut;

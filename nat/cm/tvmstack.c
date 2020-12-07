@@ -5,7 +5,11 @@
 */
 
 #include "hal.h"     // hal_Init()
+<<<<<<< HEAD:nat/cm/tvmstack.c
 #include "out.h" // All VMOut_Put*
+=======
+#include "hal_Out.h" // All VMOut_Put*
+>>>>>>> main:tests/admin/tvmstack.c
 #include "vmstack.h"
 
 #define Thread_StackCapacity 32
@@ -25,7 +29,11 @@ static void VM_Init(u8* mainAddr) {
 int main(void) {
     i32 val;
 
+<<<<<<< HEAD:nat/cm/tvmstack.c
     Hal_Init();
+=======
+    hal_Init();
+>>>>>>> main:tests/admin/tvmstack.c
 
     VMOut_PutS("Test VM Operand Stack:\n");
     VMOut_PutS("[ ][ 2 1 ][ 3 ][ 3 3 ][ 9 ][ 8 9 ][ 1 ][ ]\n");

@@ -22,6 +22,13 @@
 #include "ioreg.h"
 #endif
 
+<<<<<<< HEAD:nat/cm/vm.c
+=======
+#ifdef InterruptManagerOn
+#include "interman.h"
+#endif
+
+>>>>>>> main:src/vm/vm.c
 extern  u8*   mem; // Need the memory address for the loader.
 
 #define SpInitial  200

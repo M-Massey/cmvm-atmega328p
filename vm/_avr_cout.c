@@ -7,43 +7,17 @@
 
 #include "_avr_outdesc.h"
 #include "_avr_xtoa.h"
+#include "_avr_uart.h"
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+
 #define FOSC  16000000 // Clock Speed
 #define BAUD 57600
 #define MYUBRR FOSC/16/BAUD-1
 
-void USART_Init(unsigned int ubrr){
-  /*Set baud rate */
-  UBRR0H = (unsigned char)(ubrr>>8);
-  UBRR0L = (unsigned char)ubrr;
- /* Enable receiver and transmitter */
-  UCSR0B = (1<<RXEN0) | (1<<TXEN0);
-  /* Set frame format: 8data, 2stop bit */
-  UCSR0C = (1<<USBS0)|(3<<UCSZ00);
-}
+static void TxChar(char c) { USART_Transmit(c); }
 
-void USART_Transmit(unsigned char data)
-{
-  /* Wait for empty transmit buffer */
-  while (!(UCSR0A & (1<<UDRE0)));
-  /* Put data into buffer, sends the data */
-  UDR0 = data;
-}
-// Transmit a character to UART.
-static void TxChar(char c) {
-       USART_Transmit(c);
-
-}
-
-void USART_Flush(void){
-  unsigned char dummy;
-  while (UCSR0A & (1<<RXC0))
-  dummy = UDR0;
-}
-
-// From '_console.c'
 static void Console_Putchar(char c) { TxChar(c); }
 
 static char buf[12];    // Buffer reserved for conversion to ascii characters.
@@ -53,7 +27,7 @@ static void COut_Init(void) {
   USART_Init(MYUBRR);
 }
 
-static void COut_PutB(bool b)        { Console_Putchar(b ? 'T' : 'F'); }
+static void COut_PutB(bool b)        { Console_Putchar(b ? 'XT' : 'XF'); }
 static void COut_PutC(char c)        { Console_Putchar(c); }
 static void COut_PutS(const char* s) { while (*s) Console_Putchar(*s++); }
 static void COut_PutI(i32  i)        {_itoa(i, buf); COut_PutS(buf); }

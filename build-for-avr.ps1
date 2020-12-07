@@ -13,23 +13,22 @@ Write-Host
 if ($Loader.Exists) {
     Write-Host "Building $($Loader.BaseName) for ATmega328p..."
 
-    Set-Location .\src\vm
+    Set-Location .\vm
 
-    avr-gcc -Os -Wall -DAVR -DInterruptManagerOn -DF_CPU=16000000UL -mmcu=atmega328p -o ..\..\bin\avr.o `
+    avr-gcc -Os -Wall -DAVR -DInterruptManagerOn -DF_CPU=16000000UL -mmcu=atmega328p -o ..\bin\avr.o `
         $($Loader.FullName) `
         hal.c `
         vm.c `
         vmstack.c `
-        opcode.h `
         out.c `
         interman.c `
         ioreg.c `
-        _avr_console.c `
         _avr_cout.c `
         _avr_xtoa.c `
-        _avr_interrupts.c
+        _avr_interrupts.c `
+        _avr_uart.c
     
-    Set-Location ../..
+    Set-Location ..
 
     avr-objcopy -O ihex -j .text -j .data .\bin\avr.o .\bin\avr.hex
 

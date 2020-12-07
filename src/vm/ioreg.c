@@ -6,10 +6,8 @@
 
 #include "ioreg.h"
 
-#ifndef AVR
 #ifndef IORegToMockUart
 //#include <dos.h>
-#endif
 #endif
 
 // Software internal counters and values

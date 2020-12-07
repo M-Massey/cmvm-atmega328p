@@ -133,11 +133,15 @@ public class SerialComPort {
     
     // Main thread to transmit packets to target (reading .exe files).
     public static void Main(string[] args) {
-        if (args.Length != 1) {
-            Console.WriteLine("Usage: HostSerialLoader.exe <file.exe>");
+        if (args.Length != 2) {
+            Console.WriteLine("Usage: cmload.exe <file.exe> <serial>");
+            Console.WriteLine();
+            Console.WriteLine("Win32 Example: cmload.exe program.exe COM4");
+            Console.WriteLine("Linux Example: cmload.exe program.exe ttyusb0");
             return;
         }
         string exeFilename = args[0];
+        string comPortName = args[1];
 //t        Console.WriteLine("file = {0}", exeFilename);
 
         // Get the executable code in a buffer to build packet(s).
@@ -164,7 +168,7 @@ public class SerialComPort {
 
         // Create a new SerialPort with the same Arduino Nano settings.
         _serialPort = new SerialPort();
-        _serialPort.PortName = "COM5";
+        _serialPort.PortName = comPortName;
         _serialPort.BaudRate = 57600;
         _serialPort.Parity = Parity.None;
         _serialPort.DataBits = 8;

@@ -55,6 +55,8 @@ static void DisplayBanner() {
     VMOut_PutS(Copyright); VMOut_PutN();
 }
 
+void(* resetFunc) (void) = 0;
+
 void sendAck(){
     VMOut_PutC((char)Ack); 
     VMOut_PutC((char)0);
@@ -147,6 +149,8 @@ int main (void) {
                 status = SuccessCmd;
                 free(ptr);
                 ptr = 0;
+                resetFunc();
+                
             } break;
             case 35: {  // getStatus
                 //sendAck();

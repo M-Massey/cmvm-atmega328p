@@ -286,7 +286,11 @@ void Stack_loadVariable(Stack s, u8 var) {
     u8 nl =  fi       & 0x07;
     u8 fo = getFrameOffset(var, np, nl);
 #ifdef MONITOR
+<<<<<<< HEAD:nat/cm/vmstack.c
    VMOut_PutS("\n");
+=======
+   VMOut_PutS("\r\n");
+>>>>>>> main:src/vm/vmstack.c
    VMOut_PutS("ldv: var = "); VMOut_PutU((u32)var);
    VMOut_PutS("; fi = ");     VMOut_PutX((u32)fi);
    VMOut_PutS("; fo = ");     VMOut_PutX((u32)fo);
@@ -301,7 +305,11 @@ void Stack_storeVariable(Stack s, u8 var) {
     u8  nl =  fi       & 0x07;
     u8  fo = getFrameOffset(var, np, nl);
 #ifdef MONITOR
+<<<<<<< HEAD:nat/cm/vmstack.c
    VMOut_PutS("\n");
+=======
+   VMOut_PutS("\r\n");
+>>>>>>> main:src/vm/vmstack.c
    VMOut_PutS("stv: var = "); VMOut_PutU((u32)var);
    VMOut_PutS("; fi = ");     VMOut_PutX((u32)fi);
    VMOut_PutS("; fo = ");     VMOut_PutX((u32)fo);

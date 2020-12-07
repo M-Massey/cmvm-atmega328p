@@ -7,12 +7,16 @@
 #ifndef __CmVM_IOReg_h
 #define __CmVM_IOReg_h
 
-
+<<<<<<< HEAD:nat/cm/ioreg.h
+#include "_stdtype.h"
+=======
 #ifdef AVR
 #include "_avr_stdtype.h"
 #else
 #include "_win_stdtype.h"
 #endif
+
+>>>>>>> main:src/vm/ioreg.h
 
 u32  IOReg_Read (u32 ioreg);
 void IOReg_Write(u32 ioreg, u32 value);

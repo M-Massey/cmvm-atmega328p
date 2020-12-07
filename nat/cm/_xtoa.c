@@ -4,11 +4,17 @@
 //
 */
 
+<<<<<<< HEAD:nat/cm/_xtoa.c
+#include "_xtoa.h"
 
+/* Converts 32-bit unsigned integer to a buffer. Base is 16 by default. */
+void _utoa(u32 n, char* buf, i8 next, u8 base) {
+=======
 #include "_avr_xtoa.h"
 
 /* Converts 32-bit unsigned integer to a buffer. Base is 16 by default. */
 void _utoa(u32 n, char* buf, int next, u8 base) {
+>>>>>>> main:src/vm/_avr_xtoa.c
     u32  r, f;
     bool foundNonzero = false;
 

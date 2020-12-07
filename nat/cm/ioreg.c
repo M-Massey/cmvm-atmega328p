@@ -6,11 +6,15 @@
 
 #include "ioreg.h"
 
-
+<<<<<<< HEAD:nat/cm/ioreg.c
+#ifndef IORegToMockUart
+#include <dos.h>
+=======
 #ifndef AVR
 #ifndef IORegToMockUart
 //#include <dos.h>
 #endif
+>>>>>>> main:src/vm/ioreg.c
 #endif
 
 // Software internal counters and values

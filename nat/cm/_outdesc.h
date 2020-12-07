@@ -7,8 +7,11 @@
 #ifndef __CmVM_OutDesc_h
 #define __CmVM_OutDesc_h
 
-
+<<<<<<< HEAD:nat/cm/_outdesc.h
+#include "_out.h"
+=======
 #include "_avr_out.h"
+>>>>>>> main:src/vm/_avr_outdesc.h
 
 // Private VM Output Function Pointer Types:
 typedef void (*VMPutB)(bool);

@@ -1,3 +1,0 @@
-Test 07: Extended Bitwise Assignment Operators
-7FFFFFA6|3FFFFFD3|FFFFFD30
-7FFFFFA6|3FFFFFD3|FFFFFD30

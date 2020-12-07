@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+
+% \usepackage[margin=0.6in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{array}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{background}
+\backgroundsetup
+{
+	scale=1.0,
+	angle=0,
+	opacity = 1,
+	contents = {%
+		\includegraphics[width=\paperwidth,height=\paperheight]{report/concordia-watermark.png}
+	}%
+}
+
+\title{Cm VM Port for the\\ATmega328P Microcontroller}
+
+\author{
+\begin{tabular}{c}
+\begin{tabular}{r l}
+    Nataliya Dimitrova & 24662407 \\
+    Matthew Massey & 40061791 \\
+    Jon Zlotnik & 40030143
+\end{tabular}\\
+\\ \\ \\ \\ \\ \\ \\ \\ \\
+Project Report for SOEN 422\\ \\
+\url{https://github.com/M-Massey/cmvm-atmega328p}\\
+\\ \\
+
+Concordia University\\
+Montreal, QC, Canada
+\end{tabular}
+}
+
+\date{December 7, 2020}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\clearpage
+\pagenumbering{arabic} 
+
+\section{Introduction}
+
+This section provides a short description of your project. Discuss what hardware and software were used.
+
+\section{Goal of the Project}
+
+This section provides a quick overall summary of what your group’s tasks have achieved during the port of the virtual machine on the Arduino Nano.
+
+\section{Implementation of Tasks}
+This section should summarize your implementation of the following main tasks on the target:
+
+Theses subsections are expected to have the discussion of the implementations as well. You should include snippets of code that your group feels are relevant (and proud) to your project’s overall functionality. Do not simply toss in code but rather, discuss what is relevant about the code of the specific task and where it belongs. Theses subsections serve also as a reflection of the tasks. Discuss which
+tasks were met, which weren’t and why.
+
+\subsection{Task 3: BSL and HAL layers}
+\subsection{Task 4: VM Operand Stack and the VM core}
+\subsection{Task 5: Serial Loader on the target}
+\subsection{Task 6: Interrupt functions}
+\subsection{Task 7: I/O Register functions}
+
+\section{Conclusion}
+
+The conclusion should tie everything together. Filling your conclusion with things such as “The project was fun and entertaining” does not add value. Make your conclusion meaningful.
+
+\end{document}

@@ -2,8 +2,8 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-- [1. Important Repo Locations](#1-important-repo-locations)
-- [2. Prerequisites](#2-prerequisites)
+- [1. Repo Structure](#1-important-repo-locations)
+- [2. Build Instructions](#2-prerequisites)
 - [3. Task 0: Port & Compile AUnit](#3-task-0-port--compile-aunit)
   - [Change log](#change-log)
 - [4. Task 1: Port & Compile Cm VM](#4-task-1-port--compile-cm-vm)

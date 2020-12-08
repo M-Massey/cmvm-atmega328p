@@ -13,7 +13,7 @@ Write-Host
 if ($Loader.Exists) {
     Write-Host "Building $($Loader.BaseName) for ATmega328p..."
 
-    Set-Location .\vm
+    Set-Location .\cmvm
 
     avr-gcc -Os -Wall -DAVR -DInterruptManagerOn -DF_CPU=16000000UL -mmcu=atmega328p -o ..\bin\avr.o `
         $($Loader.FullName) `

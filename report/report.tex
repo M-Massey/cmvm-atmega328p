@@ -6,6 +6,8 @@
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{background}
+\usepackage{listings}
+
 \backgroundsetup
 {
 	scale=1.0,
@@ -20,16 +22,19 @@
 
 \author{
 \begin{tabular}{c}
+
 \begin{tabular}{r l}
     Nataliya Dimitrova & 24662407 \\
     Matthew Massey & 40061791 \\
     Jon Zlotnik & 40030143
-\end{tabular}\\
-\\ \\ \\ \\ \\ \\ \\ \\ \\
+\end{tabular}\\ \\
+Team \#10 \\ 
+(Burnt Socket)\\ \\ \\
+\\ \\ \\ \\ \\
 Project Report for SOEN 422\\ \\
 \url{https://github.com/M-Massey/cmvm-atmega328p}\\
-\\ \\
-
+\\ \\ \\
+Engineering and Computer Science\\
 Concordia University\\
 Montreal, QC, Canada
 \end{tabular}
@@ -45,21 +50,47 @@ Montreal, QC, Canada
 \clearpage
 \pagenumbering{arabic} 
 
+N.B. Our implementation can run all 12 tests from the ``big'' test suite as well as the newer small tests.
+
 \section{Introduction}
 
-This section provides a short description of your project. Discuss what hardware and software were used.
+% This section provides a short description of your project. Discuss what hardware and software were used.
+
+Our port of the Cminor (Cm) virtual machine (VM) is written in ANSI C for the Aruino Nano, equipped with the ATmega328P 8-bit microcontroller (MCU).
+This ported virtual machine can be compiled using Microchip's AVR-GCC cross-compiler.
+Specifically, we depend on the I/O (i.e. \lstinline[columns=fixed]{<avr/io.h>}) and interrupt (i.e. \lstinline[columns=fixed]{<avr/interrupt.h>}) libraries that come with the AVR toolchain.
+
+The workstations used to develop the port were running Windows 10, but the AVR toolchain, our build and test scripts written in PowerShell Core, and the Cm program loader written in dotNet core are all cross platform.
+So you shouldn't have any barriers preventing you from building the project from source.
+
 
 \section{Goal of the Project}
 
-This section provides a quick overall summary of what your group’s tasks have achieved during the port of the virtual machine on the Arduino Nano.
+% This section provides a quick overall summary of what your group’s tasks have achieved during the port of the virtual machine on the Arduino Nano.
+
+The project required three major development efforts. The first was porting functionality from a DOS/Win32 architecture to an 8-bit architecture. 
+All code that depended on platform specific libraries was abstracted away by a board specific layer (BSL). 
+We then implemented the same functionality in an ATmega328P BSL and added interrupt management as well as the ability to read and write to the MCU's I/O registers by address.
+Finally, preprocessor directives were added in the hardware abstraction layer (HAL) so that the appropriate BSL could be selected at compile-time.
+
+The second dev effort was extending the Cm program loader.
+This consisted of adding to the provided serial loader, written in C\#, to accommodate larger files of Cm bytecode and verifying the integrity of the packets sent over UART to the Arduino Nano.
+An additional ``admin'' driver for the VM running on the MCU needed to be written to allow for bytecode loading, execution, and verification over UART.
+
+Lastly, build and deployment scripts were written to ensure consistent testing of the project across workstations. 
+Admin drivers for functionality tests agnostic of the serial loader were also included in the VM source.
+
+
+
+
 
 \section{Implementation of Tasks}
-This section should summarize your implementation of the following main tasks on the target:
+% This section should summarize your implementation of the following main tasks on the target:
 
-Theses subsections are expected to have the discussion of the implementations as well. You should include snippets of code that your group feels are relevant (and proud) to your project’s overall functionality. Do not simply toss in code but rather, discuss what is relevant about the code of the specific task and where it belongs. Theses subsections serve also as a reflection of the tasks. Discuss which
-tasks were met, which weren’t and why.
+% Theses subsections are expected to have the discussion of the implementations as well. You should include snippets of code that your group feels are relevant (and proud) to your project’s overall functionality. Do not simply toss in code but rather, discuss what is relevant about the code of the specific task and where it belongs. Theses subsections serve also as a reflection of the tasks. Discuss which tasks were met, which weren’t and why.
 
 \subsection{Task 3: BSL and HAL layers}
+% with command line ``define'' arguments (e.g. \lstinline[columns=fixed]{avr-gcc -DAVR [...]}).
 \subsection{Task 4: VM Operand Stack and the VM core}
 \subsection{Task 5: Serial Loader on the target}
 \subsection{Task 6: Interrupt functions}

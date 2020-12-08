@@ -2,18 +2,90 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-- [1. Important Repo Locations](#1-important-repo-locations)
-- [2. Prerequisites](#2-prerequisites)
-- [3. Task 0: Port & Compile AUnit](#3-task-0-port--compile-aunit)
-  - [Change log](#change-log)
-- [4. Task 1: Port & Compile Cm VM](#4-task-1-port--compile-cm-vm)
-- [5. Tasks 2-4: Isolate and port the BSL and HAL layers to Atmega328p](#5-tasks-2-4-isolate-and-port-the-bsl-and-hal-layers-to-atmega328p)
-- [6. Task 5: Implement a program loader](#6-task-5-implement-a-program-loader)
-- [7. Task 6: Port the interrupt manager to Atmega328p](#7-task-6-port-the-interrupt-manager-to-atmega328p)
-- [8. Task 7: Implement an I/O interface with HAL and BSL layers](#8-task-7-implement-an-io-interface-with-hal-and-bsl-layers)
-- [9. Task 8: Project report and Git repo](#9-task-8-project-report-and-git-repo)
-- [Useful References](#useful-references)
-- [Instructions from Nat](#instructions-from-nat)
+- [1 Cm Virtual Machine Instructions](#1-cm-virtual-machine-instructions)
+  - [1.1 Build Requirements](#11-build-requirements)
+  - [1.2 Build/Download Instructions](#12-builddownload-instructions)
+  - [1.3 Operation Instructions](#13-operation-instructions)
+- [2 Serial Loader Instructions](#2-serial-loader-instructions)
+  - [2.1 Build Requirements](#21-build-requirements)
+  - [2.2 Build Instructions](#22-build-instructions)
+  - [2.3 cmload Usage Instructions](#23-cmload-usage-instructions)
+- [3 Useful References](#3-useful-references)
+
+## 1 Cm Virtual Machine Instructions
+
+### 1.1 Build Requirements
+
+- AVR Toolchain
+  - Windows: [WinAVR](https://sourceforge.net/projects/winavr/) is quite convenient
+  - Other: [Microchip Toolchains](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers)
+    - Gonna need to find avrdude somewhere.
+- [PowerShell](https://github.com/PowerShell/PowerShell/releases)
+
+### 1.2 Build/Download Instructions
+
+1. Run the following from the root of the repo. `<driver>` is the suffix of the admin driver file with the `main` function to orchestrate the virtual machine code. `<serial>` is whatever serial port your arduino is plugged into on your machine.
+
+```powershell
+.\build-for-avr.ps1 -Driver ./cmvm/admin-avr-<driver> -UploadPort <serial>
+```
+
+### 1.3 Operation Instructions
+
+These depending on what driver you uploaded as the orchestor of the VM.
+
+If you uploaded `./cmvm/admin_avr_serial_loadable.c`, you'll need to use the serial loader as described in section 2.3 cmload Usage Instructions
+
+Otherwise, if you're running a `./cmvm/admin_avr_test_*.c` file, where `*` is the name of the test, just open up your favorite serial monitor at a BAUD of `57600`, and have fun.
+
+## 2 Serial Loader Instructions
+
+### 2.1 Build Requirements
+
+- [dotnet sdk](https://dotnet.microsoft.com/download)
+
+### 2.2 Build Instructions
+
+1. Head into the `cmload` dir
+
+```bash
+cd cmload
+```
+
+2. Build the C# project.
+
+```bash
+dotnet build -c "Release" -o ../bin/cmload
+```
+
+3. Find the build artifacts in the `bin/cmload` directory from the root of the repo. There'll be an executable you can run.
+
+### 2.3 cmload Usage Instructions
+
+```
+PS B:\cmvm-atmega328p\bin> .\cmload.exe      
+
+Usage: cmload.exe <file.exe> <serial>
+
+Win32 Example: cmload.exe program.exe COM4
+Linux Example: cmload.exe program.exe ttyusb0
+```
+
+
+## 3 Useful References
+
+- [ATmega328P Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf)
+- [Atmega328p External Interrupts Explanation](https://www.arxterra.com/11-atmega328p-external-interrupts/#ATmega328P_External_Interrupt_Enable)
+- [i386 Instruction Set](https://pdos.csail.mit.edu/6.828/2008/readings/i386/c17.htm)
+- [AMD64 Instruction Handout](http://6.s081.scripts.mit.edu/sp18/x86-64-architecture-guide.html)
+- [AMD64 Manual Volume 1](https://www.amd.com/system/files/TechDocs/24592.pdf)
+
+<!-- 
+---------------------
+---------------------
+---------------------
+
+## Older Stuff
 
 ## 1. Important Repo Locations
 
@@ -89,13 +161,7 @@ gcc -o dist/cm _console.c _cout.c _xtoa.c admin.c hal.c ioreg.c out.c vm.c vmsta
 
 
 
-## Useful References
 
-- [ATmega328P Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf)
-- [Atmega328p External Interrupts Explanation](https://www.arxterra.com/11-atmega328p-external-interrupts/#ATmega328P_External_Interrupt_Enable)
-- [i386 Instruction Set](https://pdos.csail.mit.edu/6.828/2008/readings/i386/c17.htm)
-- [AMD64 Instruction Handout](http://6.s081.scripts.mit.edu/sp18/x86-64-architecture-guide.html)
-- [AMD64 Manual Volume 1](https://www.amd.com/system/files/TechDocs/24592.pdf)
 
 ## Instructions from Nat
 
@@ -131,4 +197,4 @@ You can compare the output in Putty with the expected output to see if character
 To see the binary contents of the executable files T01.exe...T12.exe
 
 - compile the dumpFile.c : gcc -o dupmf dumpFile.c
-- run : dumpf dist\T01.exe
+- run : dumpf dist\T01.exe -->
